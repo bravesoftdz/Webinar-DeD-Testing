@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{0422649E-87A3-46CB-980F-ADC5ACB08B40}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Atm.Services\Atm.Services.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Atm.Tests\Atm.Tests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Atm_Services">
+        <MSBuild Projects="Atm.Services\Atm.Services.dproj"/>
+    </Target>
+    <Target Name="Atm_Services:Clean">
+        <MSBuild Projects="Atm.Services\Atm.Services.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Atm_Services:Make">
+        <MSBuild Projects="Atm.Services\Atm.Services.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Atm_Tests">
+        <MSBuild Projects="Atm.Tests\Atm.Tests.dproj"/>
+    </Target>
+    <Target Name="Atm_Tests:Clean">
+        <MSBuild Projects="Atm.Tests\Atm.Tests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Atm_Tests:Make">
+        <MSBuild Projects="Atm.Tests\Atm.Tests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Atm_Services;Atm_Tests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Atm_Services:Clean;Atm_Tests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Atm_Services:Make;Atm_Tests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
